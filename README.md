@@ -39,7 +39,9 @@ To predict the random effects, we use
 r <- raneff(Model)
 ```
 
-### Please cite the code using following formula:
+### Citation information
+
+Please cite the code using following formula:
 
     @misc{Qian2019,
         author = {Qian M. Zhou, Jingjing Pan},
