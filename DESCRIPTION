@@ -1,0 +1,15 @@
+Package: CVEPJointModel
+Type: Package
+Title: Joint Modelling Procedure in Analyzing Highly Unbalanced CVEP Data
+Version: 0.1.0
+Authors@R: c(
+        person("Qian", "Zhou", role = c("aut"), email = "qz70@msstate.edu"),
+        person("Jingjing", "Pan", role = c("aut", "cre"), email = "panjj1125@outlook.com")
+    )
+Maintainer: Jingjing Pan <panjj1125@outlook.com>
+Description:  Joint modelling (JM) procedure which analyze highly unbalanced data from CVEP, 
+    in which some standard varieties, called controls, are assigned by the program.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports: lme4, dplyr, parallel, mvtnorm
