@@ -2,6 +2,8 @@
 
 Authors: [Qian M. Zhou](http://qianmichellezhou.net), Jingjing Pan,
 
+Vignette: Joint Modeling in Analyzing Highly Unbalanced Multi-Environment Trial Data (under review)
+
 Please email all comments/questions to qz70@msstate.edu or panjj1125@outlook.com
 
 ### Installation Instructions
