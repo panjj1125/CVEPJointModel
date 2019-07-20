@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' data(NCVT_3year)
-#' re <- CVEP_JM(dat, factors = c("Year","Loc","Rep", "Variety"),
+#' re <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety"),
 #' TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Year","Variety:Loc")),
 #' DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),
 #' converg_control=list(nsamp=5,max.iter=5,err=10^(-5),err1=10^(-5)))
