@@ -22,7 +22,7 @@ The main function to estimate the model is `CVEP_JM()` but there are a host of o
 
 ```
 library(CVEPJointModel)
-dat <- read.csv('3year_NCVT.csv')
+dat <- NCVT_3year
 Model <- CVEP_JM(dat, factors = c("Year","Loc","Rep", "Variety"),
                  TT_mm=list(fixed=c("Year","Loc"),
                  random=c("Variety","Variety:Year","Variety:Loc")),
