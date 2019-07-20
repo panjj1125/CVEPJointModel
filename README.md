@@ -22,8 +22,8 @@ The main function to estimate the model is `CVEP_JM()` but there are a host of o
 
 ```
 library(CVEPJointModel)
-dat <- NCVT_3year
-Model <- CVEP_JM(dat, factors = c("Year","Loc","Rep", "Variety"),
+data(NCVT_3year)
+Model <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety"),
                  TT_mm=list(fixed=c("Year","Loc"),
                  random=c("Variety","Variety:Year","Variety:Loc")),
                  DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),
@@ -32,7 +32,7 @@ Model <- CVEP_JM(dat, factors = c("Year","Loc","Rep", "Variety"),
 When there is controls in fixed effects, we can use the following code:
 
 ```
-Model <- CVEP_JM(dat, factors = c("Year","Loc","Rep", "Variety", "Checks"), TT_mm=list(fixed=c("Year","Loc", "Checks"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=5,max.iter=5,err=10^(-5),err1=10^(-5)))
+Model <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety", "Checks"), TT_mm=list(fixed=c("Year","Loc", "Checks"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=5,max.iter=5,err=10^(-5),err1=10^(-5)))
 
 ```
 
