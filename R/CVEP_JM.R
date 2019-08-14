@@ -11,7 +11,7 @@
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
-CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=500,max.iter=500,err=10^(-5),err1=10^(-5))){
+CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=500,max.iter=1000,err=10^(-7),err1=10^(-4),seed=20190421)){
 
   library(lme4)
   library(dplyr)
@@ -26,6 +26,7 @@ CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("V
   max.iter = converg_control$max.iter
   err = converg_control$err
   err1 = converg_control$err1
+  seed1 <<- converg_control$seed
 
   dat0 = MET_dat
   dat0[,factors] = apply(dat0[,factors],2,as.character)
