@@ -84,6 +84,7 @@ slice_samp <- function(init, obs, TT_dat, DS_dat, x, z, DS_mu, DS_st,Sigmab_TT_D
     ## sampling
     sss <- matrix(NA, length(init), nsamp)
     i <- 1
+    set.seed(seed1)
     while(i<=nsamp){
       ss <- rmvnorm(1, mu_miss, Sigma_miss)
       # calculate the acceptance indicators for all the missing values
