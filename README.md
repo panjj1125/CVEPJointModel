@@ -27,12 +27,12 @@ Model <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety"),
                  TT_mm=list(fixed=c("Year","Loc"),
                  random=c("Variety","Variety:Year","Variety:Loc")),
                  DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),
-                 converg_control=list(nsamp=5,max.iter=5,err=10^(-5),err1=10^(-5)))
+                 converg_control=list(nsamp=500,max.iter=1000,err=10^(-7),err1=10^(-4),seed=20190421))
 ```
 When there is controls in fixed effects, we can use the following code:
 
 ```
-Model <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety", "Checks"), TT_mm=list(fixed=c("Year","Loc", "Checks"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=5,max.iter=5,err=10^(-5),err1=10^(-5)))
+Model <- CVEP_JM(NCVT_3year, factors = c("Year","Loc","Rep", "Variety", "Checks"), TT_mm=list(fixed=c("Year","Loc", "Checks"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),converg_control=list(nsamp=500,max.iter=1000,err=10^(-7),err1=10^(-4),seed=20190421))
 
 ```
 
