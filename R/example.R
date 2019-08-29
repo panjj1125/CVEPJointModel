@@ -5,11 +5,11 @@ example <- function(dat0){
   dat0$TT_Trait = scale(dat0$TT_Trait)
   dat0$DS_Trait = scale(log(dat0$DS_Trait))
   
-  source("FUNS.R")
-  source("CVEP_JM.R")
+  #source("FUNS.R")
+  #source("CVEP_JM.R")
   res_PC_post = CVEP_JM(MET_dat=dat0,factors= c("Variety","Year","Loc","Rep"),TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=F,converg_control=list(nsamp=500,max.iter=1000,err=5*10^(-5),err1=5*10^(-4),seed=20190421))
   res_PC_full = CVEP_JM(MET_dat=dat0,factors= c("Variety","Year","Loc","Rep"),TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=T,converg_control=list(nsamp=500,max.iter=1000,err=5*10^(-5),err1=5*10^(-4),seed=20190421))
-  source("CVEP_JM_Year.R")
+  #source("CVEP_JM_Year.R")
   res_YC_post = CVEP_JM_Year(MET_dat=dat0,factors= c("Variety","Year","Loc","Rep"),TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=F,converg_control=list(nsamp=500,max.iter=1000,err=5*10^(-5),err1=5*10^(-4),seed=20190421))
   res_YC_full = CVEP_JM_Year(MET_dat=dat0,factors= c("Variety","Year","Loc","Rep"),TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=T,converg_control=list(nsamp=500,max.iter=1000,err=5*10^(-5),err1=5*10^(-4),seed=20190421))
   
