@@ -41,6 +41,10 @@ To predict the random effects, we use
 r <- raneff(Model)
 ```
 
+To obtain the results in our paper, you can run
+```
+example(NCVT_3year)
+```
 ### Citation information
 
 Please cite the code using following formula:
