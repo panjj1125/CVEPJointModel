@@ -11,8 +11,8 @@
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
-CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=F,converg_control=list(nsamp=500,max.iter=1000,err=10^(-7),err1=10^(-4),seed=20190421)){
-
+CVEP_JM_Year <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("Variety","Variety:Year","Variety:Loc")),DS_mm=list(fixed=c("Year","Loc"),random=c("Variety")),window=Inf,yes_full=F,converg_control=list(nsamp=500,max.iter=1000,err=10^(-7),err1=10^(-4),seed=20190421)){
+  
   library(lme4)
   library("dplyr")
   library(parallel)
@@ -165,7 +165,7 @@ CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("V
   sigm2 <<- c(TT_para_raneff['Residual'], DS_para_raneff['Residual']); names(sigm2)=c("TT_sigm2","DS_sigm2") # error variance
   ## initial values values of logistic models and
   set.seed(2019)
-  bet <<- runif(3)
+  bet <<- runif(factors_length$Year)
   
   
   gamma_now <- list(theta=theta, Sigmab=c(gamma_TT_Sigmab,gamma_DS_Sigmab), sigm2=sigm2, bet=bet, rho = rho) # all the parameters
@@ -231,7 +231,8 @@ CVEP_JM <- function(MET_dat,factors,TT_mm=list(fixed=c("Year","Loc"),random=c("V
     MmatDat <- MmatDat[MmatDat$New == 0 & MmatDat$E == 1 & MmatDat$Checks == 0,,drop=F]
     MmatDat$TraitAvg <- (MmatDat$TraitAvg - DS_mu) / DS_st # standardize
     MmatDat$TraitAvgPre <- ifelse(MmatDat$TraitAvgPre != 0, (MmatDat$TraitAvgPre - DS_mu) / DS_st, MmatDat$TraitAvgPre)
-    bet_new = glm(P_tilde ~ TraitAvg + TraitAvgPre, data = MmatDat, family = binomial)$coefficients
+    MmatDat$Year = factor(MmatDat$Year, levels=factors_list$Year[-1])
+    bet_new = glm(P_tilde ~ Year + TraitAvg, data = MmatDat, family = binomial)$coefficients
     
     ## Update Sigmab
     TT_Ttrait <- mapply(function(t,u1){

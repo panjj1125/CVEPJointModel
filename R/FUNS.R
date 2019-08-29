@@ -11,7 +11,7 @@ design_matrix_Z <- function(tmpdat, raneffect){
   if (length(raneffect)==1 & is.element("Variety",raneffect)){
     ## random effects include only variety effect
     Z <- model.matrix(~ 1, tmpdat)
-    } else{
+  } else{
     Z1 <- lapply(raneffect[raneffect!="Variety"],function(r1){
       r = strsplit(r1,split=":")[[1]][2]; tmpdat[,r] = as.character(tmpdat[,r])
       if(nrow(unique(tmpdat[r]))==1){
@@ -100,7 +100,8 @@ slice_samp <- function(init, obs, TT_dat, DS_dat, x, z, DS_mu, DS_st,Sigmab_TT_D
         m1_dat$TraitAvgPre = as.numeric(as.character(m1_dat$TraitAvgPre))
         m1 = model.matrix(reformulate(termlabels = c("TraitAvg","TraitAvgPre")), m1_dat)
         value <- c(exp(m1%*%as.matrix(bet))/(1+exp(m1%*%as.matrix(bet))))
-        plant <- 1-rbinom(length(value), 1, value)
+        #plant <- 1-rbinom(length(value), 1, value)
+        plant <- 1-rbinom(1, 1, value)
         if(!is.na(prod(plant)) & prod(plant) == 1){ ## accept the new value
           sss[,i] <- ss
           i <- i+1
@@ -169,8 +170,8 @@ completeData <- function(dataV, window=3,factors_list,AllLoc_Year){
   dataV$Variety <- as.character(dataV$Variety)
   YearAll <- as.numeric(as.character(sort(unique(dataV$Year))))
   if (is.infinite(window)){
-    # Yearfull = factors_list$Year
-    YearFull = as.numeric(factors_list$Year)[as.numeric(factors_list$Year)>=min(YearAll)]
+    YearFull = factors_list$Year
+    # YearFull = as.numeric(factors_list$Year)[as.numeric(factors_list$Year)>=min(YearAll)]
   } else {
     if(length(YearAll) == 1){
       YearL <- seq(YearAll, YearAll+window-1, 1)
